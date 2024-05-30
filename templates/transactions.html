@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Objektorientert programmering - Polymorfisme</title>
+    <title>Objektorientert programmering - Abstraksjon</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -29,24 +29,23 @@
 </head>
 
 <body>
-    <h1>Objektorientert programmering - Polymorfisme</h1>
-    <h2>"Media database"</h2>
+    <h1>Objektorientert programmering - Abstraksjon</h1>
+    <h2>Bank</h2>
+    <h3>Saldo: {{data.saldo}}</h3>
     <table>
         <tbody>
             <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Director</th>
-                <th>Issue Number</th>
-                <th>Media Type</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Type</th>
+                <th>Comment</th>
             </tr>
-            {% for m in media %}
+            {% for t in data.transactions %}
             <tr>
-                <td>{{m.title}}</td>
-                <td>{{m.author}}</td>
-                <td>{{m.director}}</td>
-                <td>{{m.issue_number}}</td>
-                <td>{{m.type}}</td>
+                <td>{{t.date}}</td>
+                <td>{{t.amount}}</td>
+                <td>{{t.transaction_type}}</td>
+                <td>{{t.comment}}</td>
             </tr>
             {% endfor %}
         </tbody>

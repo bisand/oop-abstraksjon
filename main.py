@@ -1,15 +1,10 @@
-from crypt import methods
 from flask import Flask, redirect, render_template, request
-from models.Car import Car
-from models.Vehicle import Vehicle
-from models.Media import Media
-from models.Book import Book
-from models.DVD import DVD
-from models.Magazine import Magazine
+
+from models.BankDatabase import BankDatabase
 
 app = Flask(__name__)
 
-database = []
+database = BankDatabase()
 
 
 @app.route("/")
@@ -17,34 +12,30 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/media", methods=["GET"])
-def media():
-    res = []
-    for data in database:
-        res.append(data.__dict__)
-    return render_template("media.html", media=res)
+@app.route("/transactions", methods=["GET"])
+def get_transactions():
+    trans = []
+    saldo = 0
+    for data in database.get_transactions():
+        saldo += int(data.amount)
+        trans.append(data.__dict__)
+    res = {}
+    res["saldo"] = saldo
+    res["transactions"] = trans
+    return render_template("transactions.html", data=res)
 
 
-@app.route("/media", methods=["POST"])
-def new_media():
-    title = request.form["title"]
-    author = request.form["author"]
-    director = request.form["director"]
-    # editor = request.form["editor"]
-    issue_number = request.form["issue_number"]
+@app.route("/transactions", methods=["POST"])
+def post_transaction():
+    amount = request.form["amount"]
+    comment = request.form["comment"]
 
-    media = Media(title)
-    if author is not "":
-        media = Book(title, author)
-    if director is not "":
-        media = DVD(title, director)
-    if issue_number is not "":
-        media = Magazine(title, issue_number)
+    if request.form.get("deposit") is not None:
+        database.deposit_money(amount, comment)
+    elif request.form.get("withdraw") is not None:
+        database.withdraw_money(amount, comment)
 
-    database.append(media)
-
-    print(media.__dict__)
-    return redirect("/media")
+    return redirect("/transactions")
 
 
 app.run()
