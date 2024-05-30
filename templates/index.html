@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    <title>Objektorientert programmering - Polymorfisme</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(59, 59, 59);
+            color: rgb(221, 221, 221);
+            padding: 5em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid rgb(221, 221, 221);
+            padding: 0.5em;
+        }
+
+        th {
+            background-color: rgb(221, 221, 221);
+            color: rgb(59, 59, 59);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Objektorientert programmering - Polymorfisme</h1>
+    <p>New media</p>
+    <form action="{{ url_for('new_media') }}" method="post">
+        <p><input type="text" name="title" placeholder="Title"></p>
+        <p><input type="text" name="author" placeholder="Author"></p>
+        <p><input type="text" name="director" placeholder="Director"></p>
+        <p><input type="text" name="issue_number" placeholder="Issue no"></p>
+        <p><input type="submit" value="New Media"></p>
+    </form>
+</body>
+
+</html>
