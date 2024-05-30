@@ -1,99 +1,45 @@
 # Oppgaver
 
-## Polymorfisme
+## Abstraksjon og Innkapsling
 
-### Oppgave 1: Ad Hoc Polymorfisme med Funksjon Overlasting
-
-Definer en klasse `Calculator` som implementerer en metode `add` for å legge sammen to tall. Utvid klassen slik at `add`-metoden kan ta imot to eller tre argumenter (overlasting). Skriv også testkode som viser hvordan `add`-metoden kan brukes med både to og tre argumenter.
+### Oppgave 1: Abstraksjon med Abstrakte Klasser
 
 #### Beskrivelse
 
-1. **Klasse `Calculator`**:
-   - `add`-metoden tar to eller tre argumenter. Hvis tre argumenter gis, returneres summen av alle tre, ellers returneres summen av de to første.
+Lag en abstrakt baseklasse `Employee` med en abstrakt metode `calculate_salary`. Lag deretter to underklasser `FullTimeEmployee` og `PartTimeEmployee` som implementerer `calculate_salary`-metoden for å beregne lønn for henholdsvis heltids- og deltidsansatte.
 
-2. **Testkoden**:
-   - Oppretter et `Calculator`-objekt.
-   - Demonstrerer bruk av `add`-metoden med to og tre argumenter.
+#### Krav
+
+1. `Employee`-klassen skal være en abstrakt klasse med en abstrakt metode `calculate_salary`.
+2. `FullTimeEmployee`-klassen skal arve fra `Employee` og implementere `calculate_salary`-metoden for å returnere en fast månedslønn.
+3. `PartTimeEmployee`-klassen skal arve fra `Employee` og implementere `calculate_salary`-metoden for å returnere lønn basert på timebetaling og antall timer arbeidet.
 
 ___
 
-### Oppgave 2: Ad Hoc Polymorfisme med Operatør Overlasting
-
-Definer en klasse `Product` som representerer et produkt i en butikk. Implementer metode for å overbelaste `+`-operatøren slik at to `Product`-objekter kan legges sammen for å få summen av prisene deres.
+### Oppgave 2: Innkapsling med Private Attributter og Gettere/Settere
 
 #### Beskrivelse
 
-1. **Klasse `Product`**:
-   - `__init__`-metoden initialiserer et produkt med navn og pris.
-   - `__add__`-metoden overbelaster `+`-operatøren for å kunne legge sammen to `Product`-objekter. Den returnerer et nytt `Product`-objekt med kombinert navn og pris.
-   - `__str__`-metoden returnerer en strengrepresentasjon av produktet.
+Lag en klasse `BankAccount` med private attributter `_balance` og `_account_number`. Implementer metoder for å sette og hente balansen, samt en metode for å hente kontonummeret.
 
-2. **Testkoden**:
-   - Oppretter to `Product`-objekter.
-   - Bruker `+`-operatøren for å kombinere dem.
-   - Skriver ut det kombinerte produktet.
+#### Krav
+
+1. `BankAccount`-klassen skal ha private attributter `_balance` og `_account_number`.
+2. Klassen skal ha metoder `get_balance`, `set_balance`, og `get_account_number` for å hente og sette verdier.
+3. `set_balance`-metoden skal bare tillate positive verdier.
 
 ___
 
-### Oppgave 3: Universell Polymorfisme med Subtyping
-
-Definer en baseklasse `Shape` med en metode `area`. Deretter, definer to subklasser `Circle` og `Rectangle` som overstyrer `area`-metoden. Skriv en funksjon `print_area` som tar en `Shape`-instans som argument og skriver ut arealet.
+### Oppgave 3: Abstraksjon og Innkapsling i Et System
 
 #### Beskrivelse
 
-1. **Klasse `Shape`**:
-   - `area`-metoden er en abstrakt metode som skal overstyres i subklassene.
+Lag et enkelt bibliotekssystem. Lag en klasse `Book` med private attributter `_title`, `_author`, og `_isbn`. Implementer en klasse `Library` som håndterer en samling av `Book`-objekter, med metoder for å legge til en bok, fjerne en bok, og søke etter en bok etter tittel.
 
-2. **Klasse `Circle`**:
-   - `__init__`-metoden initialiserer en sirkel med en radius.
-   - `area`-metoden returnerer arealet av sirkelen.
+#### Krav
 
-3. **Klasse `Rectangle`**:
-   - `__init__`-metoden initialiserer et rektangel med bredde og høyde.
-   - `area`-metoden returnerer arealet av rektangelet.
+1. `Book`-klassen skal ha private attributter `_title`, `_author`, og `_isbn`.
+2. `Book`-klassen skal ha "gettere" for å hente verdiene til disse attributtene.
+3. `Library`-klassen skal håndtere en liste av `Book`-objekter og ha metoder `add_book`, `remove_book`, og `find_book_by_title`.
 
-4. **Funksjon `print_area`**:
-   - Tar en `Shape`-instans som argument og skriver ut arealet ved å kalle `area`-metoden.
-
-5. **Testkoden**:
-   - Oppretter en `Circle`-instans og en `Rectangle`-instans.
-   - Bruker `print_area`-funksjonen til å skrive ut arealet av begge figurene.
-
-___
-
-### Oppgave 4: Universell Polymorfisme med Parametrisk Polymorfisme
-
-Implementer en generisk funksjon `maximum` som kan ta inn en liste av elementer og returnere det største elementet. Test funksjonen med både en liste av tall og en liste av strenger.
-
-#### Beskrivelse
-
-1. **Funksjon `maximum`**:
-   - Tar en liste av elementer som argument.
-   - Returnerer `None` hvis listen er tom.
-   - Itererer gjennom listen og finner det største elementet ved å sammenligne hvert element med det nåværende maksimumselementet.
-
-2. **Testkoden**:
-   - Tester `maximum`-funksjonen med en liste av tall.
-   - Tester `maximum`-funksjonen med en liste av strenger.
-
-___
-
-### Oppgave 5: Polymorfisme i Python med Duck Typing
-
-Lag en klasse `Dog` og en klasse `Cat`, begge med en metode `speak`. Skriv en funksjon `animal_sound` som tar et objekt som argument og kaller `speak`-metoden. Demonstrer duck typing ved å sende instanser av `Dog` og `Cat` til `animal_sound`-funksjonen.
-
-#### Beskrivelse
-
-1. **Klasse `Dog`**:
-   - `speak`-metoden returnerer "Woof!".
-
-2. **Klasse `Cat`**:
-   - `speak`-metoden returnerer "Meow!".
-
-3. **Funksjon `animal_sound`**:
-   - Tar et objekt som argument og kaller `speak`-metoden på dette objektet.
-   - Demonstrerer duck typing ved å bruke metoden uten å sjekke objektets klasse.
-
-4. **Testkoden**:
-   - Oppretter en `Dog`-instans og en `Cat`-instans.
-   - Bruker `animal_sound`-funksjonen til å skrive ut lyden fra begge dyrene.
+Disse oppgavene gir praktisk erfaring med abstraksjon og innkapsling, inkludert hvordan man bruker abstrakte klasser, private attributter, og "gettere"/"settere" for å beskytte data og implementere logikk i et system.
